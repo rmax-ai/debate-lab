@@ -189,4 +189,5 @@ Synthesizing → Auditing → Complete
 - `docs/DECISIONS.md` — key architectural decisions
 - `PYTHON_DEVELOPMENT.md` — Python day-to-day engineering
 - `PYTHON_API_DESIGN.md` — API design conventions
+- `PYTHON_ARCHITECTURE.md` — monorepo structure, event sourcing, component boundaries
 - `TYPESCRIPT_DEVELOPMENT.md` — frontend conventions
