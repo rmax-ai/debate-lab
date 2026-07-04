@@ -21,10 +21,28 @@ wheels = [
 ]
 
 [[package]]
+name = "debate-evidence"
+version = "0.1.0"
+source = { editable = "../evidence" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "pydantic", specifier = ">=2.10.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8.0" },
+]
+provides-extras = ["dev"]
+
+[[package]]
 name = "debate-orchestrator"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "debate-evidence" },
     { name = "pydantic" },
 ]
 
@@ -37,6 +55,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "debate-evidence", editable = "../evidence" },
     { name = "pydantic", specifier = ">=2.10.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },

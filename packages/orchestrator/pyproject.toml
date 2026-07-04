@@ -6,7 +6,11 @@ requires-python = ">=3.12"
 license = { text = "MIT" }
 dependencies = [
     "pydantic>=2.10.0",
+    "debate-evidence",
 ]
+
+[tool.uv.sources]
+debate-evidence = { path = "../evidence", editable = true }
 
 [project.optional-dependencies]
 dev = [
