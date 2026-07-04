@@ -1,24 +1,28 @@
 # DebateLab configuration
 # API keys are read from environment variables, not this file.
-# Set DEEPSEEK_API_KEY and/or GEMINI_API_KEY to use real providers.
+# Set OPENAI_API_KEY, DEEPSEEK_API_KEY, and/or GEMINI_API_KEY to use real providers.
 # Without keys, the system falls back to MockModelProvider.
 
 [provider]
-# Which provider to use: "deepseek", "gemini", "fallback", or "mock"
+# Which provider to use: "openai", "deepseek", "gemini", "fallback", or "mock"
 # "fallback" tries real providers in order, then falls back to mock
-default = "deepseek"
+default = "openai"
+
+[provider.openai]
+model = "gpt-4o-mini"             # ~$0.15/M input, ~$0.60/M output — cheapest quality
+temperature = 0.0
 
 [provider.deepseek]
-model = "deepseek-chat"          # ~$0.27/M input, ~$1.10/M output
+model = "deepseek-chat"           # ~$0.27/M input, ~$1.10/M output
 temperature = 0.0
 
 [provider.gemini]
-model = "gemini-2.0-flash"       # Free tier, rate-limited
+model = "gemini-2.0-flash"        # Free tier, rate-limited
 temperature = 0.0
 
 [provider.fallback]
 # Order of providers to try before falling back to mock
-order = ["deepseek", "gemini"]
+order = ["openai", "deepseek", "gemini"]
 
 [orchestrator]
 max_rounds = 3

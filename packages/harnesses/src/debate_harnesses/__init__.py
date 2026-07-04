@@ -8,6 +8,7 @@ from debate_harnesses.real_providers import (
     DeepSeekProvider,
     FallbackProvider,
     GeminiProvider,
+    OpenAIProvider,
 )
 from debate_harnesses.registry import HarnessLoader
 from debate_harnesses.schemas import AgentHarness, HarnessRegistry
@@ -21,4 +22,5 @@ __all__ = [
     "HarnessRegistry",
     "MockModelProvider",
     "ModelProvider",
+    "OpenAIProvider",
 ]

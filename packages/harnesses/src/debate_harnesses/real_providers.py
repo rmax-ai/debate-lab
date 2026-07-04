@@ -1,16 +1,16 @@
 """Real LLM provider adapters for DebateLab.
 
 Implements the ModelProvider protocol for:
-- DeepSeek (OpenAI-compatible API) — cheapest quality model
-- Gemini (Google GenAI) — free tier available
+- OpenAI (native structured output via json_schema)
+- DeepSeek (OpenAI-compatible, JSON mode + prompt injection)
+- Gemini (Google GenAI, native structured output)
 
-Default models are the cheapest capable ones:
-- deepseek-chat (~$0.27/M input, ~$1.10/M output)
-- gemini-2.0-flash (free tier, rate-limited)
+Default cheap models:
+- openai: gpt-4o-mini (~$0.15/M input, ~$0.60/M output)
+- deepseek: deepseek-chat (~$0.27/M input, ~$1.10/M output)
+- gemini: gemini-2.0-flash (free tier, rate-limited)
 
-API keys are resolved from environment variables:
-- DEEPSEEK_API_KEY
-- GEMINI_API_KEY
+API keys from env vars: OPENAI_API_KEY, DEEPSEEK_API_KEY, GEMINI_API_KEY
 """
 
 from __future__ import annotations
@@ -207,6 +207,75 @@ class GeminiProvider:
         raw = response.text
         if raw is None:
             raise RuntimeError("Gemini returned empty response")
+
+        data = json.loads(raw)
+        return response_schema.model_validate(data)
+
+
+class OpenAIProvider:
+    """OpenAI provider with native structured output (json_schema).
+
+    Uses the openai package with default base URL.
+    Native structured output means strict schema enforcement —
+    the model CANNOT produce output that doesn't match the schema.
+    """
+
+    def __init__(
+        self,
+        model: str = "gpt-4o-mini",
+        temperature: float = 0.0,
+        api_key: str | None = None,
+    ) -> None:
+        self.model = model
+        self.temperature = temperature
+        self._api_key = api_key or os.environ.get("OPENAI_API_KEY", "")
+        self._call_count = 0
+
+        if not self._api_key:
+            logger.warning(
+                "OPENAI_API_KEY not set — OpenAIProvider will fail on generate()"
+            )
+
+    @property
+    def call_count(self) -> int:
+        return self._call_count
+
+    async def generate(self, prompt: str, response_schema: type[BaseModel]) -> BaseModel:
+        """Generate a structured response via OpenAI with native schema enforcement."""
+        from openai import AsyncOpenAI
+
+        self._call_count += 1
+
+        client = AsyncOpenAI(api_key=self._api_key)
+
+        schema_json = response_schema.model_json_schema()
+
+        response = await client.chat.completions.create(
+            model=self.model,
+            temperature=self.temperature,
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a structured debate agent. "
+                        "Respond with valid JSON matching the schema exactly."
+                    ),
+                },
+                {"role": "user", "content": prompt},
+            ],
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": response_schema.__name__,
+                    "strict": True,
+                    "schema": schema_json,
+                },
+            },
+        )
+
+        raw = response.choices[0].message.content
+        if raw is None:
+            raise RuntimeError("OpenAI returned empty response")
 
         data = json.loads(raw)
         return response_schema.model_validate(data)

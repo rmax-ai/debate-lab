@@ -17,6 +17,7 @@ from debate_harnesses.real_providers import (
     DeepSeekProvider,
     FallbackProvider,
     GeminiProvider,
+    OpenAIProvider,
 )
 
 logger = logging.getLogger(__name__)
@@ -104,6 +105,20 @@ def _build_provider(name: str, cfg: dict) -> ModelProvider:
         provider._actual_name = "deepseek"  # type: ignore[attr-defined]
         return provider
 
+    if name == "openai":
+        oa_cfg = cfg.get("openai", {})
+        api_key = os.environ.get("OPENAI_API_KEY", "")
+        if not api_key:
+            logger.warning("OPENAI_API_KEY not set — falling back to mock")
+            return MockModelProvider()
+        provider = OpenAIProvider(
+            model=oa_cfg.get("model", "gpt-4o-mini"),
+            temperature=oa_cfg.get("temperature", 0.0),
+            api_key=api_key,
+        )
+        provider._actual_name = "openai"  # type: ignore[attr-defined]
+        return provider
+
     if name == "gemini":
         gm_cfg = cfg.get("gemini", {})
         api_key = os.environ.get("GEMINI_API_KEY", "")
@@ -120,11 +135,22 @@ def _build_provider(name: str, cfg: dict) -> ModelProvider:
 
     if name == "fallback":
         fb_cfg = cfg.get("fallback", {})
-        order = fb_cfg.get("order", ["deepseek", "gemini"])
+        order = fb_cfg.get("order", ["openai", "deepseek", "gemini"])
         providers: list[ModelProvider] = []
 
         for pname in order:
-            if pname == "deepseek":
+            if pname == "openai":
+                api_key = os.environ.get("OPENAI_API_KEY", "")
+                if api_key:
+                    oa_cfg = cfg.get("openai", {})
+                    providers.append(OpenAIProvider(
+                        model=oa_cfg.get("model", "gpt-4o-mini"),
+                        temperature=oa_cfg.get("temperature", 0.0),
+                        api_key=api_key,
+                    ))
+                else:
+                    logger.info("Skipping openai — no API key")
+            elif pname == "deepseek":
                 api_key = os.environ.get("DEEPSEEK_API_KEY", "")
                 if api_key:
                     ds_cfg = cfg.get("deepseek", {})

@@ -113,9 +113,77 @@ requires-dist = [
 provides-extras = ["dev"]
 
 [[package]]
+name = "debate-evidence"
+version = "0.1.0"
+source = { editable = "../../packages/evidence" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "pydantic", specifier = ">=2.10.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8.0" },
+]
+provides-extras = ["dev"]
+
+[[package]]
+name = "debate-harnesses"
+version = "0.1.0"
+source = { editable = "../../packages/harnesses" }
+dependencies = [
+    { name = "pydantic" },
+    { name = "pyyaml" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "google-genai", marker = "extra == 'gemini'", specifier = ">=1.0.0" },
+    { name = "google-genai", marker = "extra == 'real'", specifier = ">=1.0.0" },
+    { name = "openai", marker = "extra == 'deepseek'", specifier = ">=1.60.0" },
+    { name = "openai", marker = "extra == 'real'", specifier = ">=1.60.0" },
+    { name = "pydantic", specifier = ">=2.10.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },
+    { name = "pyyaml", specifier = ">=6.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8.0" },
+]
+provides-extras = ["dev", "deepseek", "gemini", "real"]
+
+[[package]]
 name = "debate-orchestrator"
 version = "0.1.0"
 source = { editable = "../../packages/orchestrator" }
+dependencies = [
+    { name = "debate-evidence" },
+    { name = "debate-harnesses" },
+    { name = "debate-tools" },
+    { name = "debate-tracing" },
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "debate-evidence", editable = "../../packages/evidence" },
+    { name = "debate-harnesses", editable = "../../packages/harnesses" },
+    { name = "debate-harnesses", extras = ["deepseek"], marker = "extra == 'deepseek'", editable = "../../packages/harnesses" },
+    { name = "debate-harnesses", extras = ["gemini"], marker = "extra == 'gemini'", editable = "../../packages/harnesses" },
+    { name = "debate-harnesses", extras = ["real"], marker = "extra == 'real'", editable = "../../packages/harnesses" },
+    { name = "debate-tools", editable = "../../packages/tools" },
+    { name = "debate-tracing", editable = "../../packages/tracing" },
+    { name = "pydantic", specifier = ">=2.10.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8.0" },
+]
+provides-extras = ["dev", "deepseek", "gemini", "real"]
+
+[[package]]
+name = "debate-tools"
+version = "0.1.0"
+source = { editable = "../../packages/tools" }
 dependencies = [
     { name = "pydantic" },
 ]
