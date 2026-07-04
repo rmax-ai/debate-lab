@@ -8,7 +8,7 @@ from typing import Any
 from debate_evidence.extractor import EvidenceExtractor
 from debate_evidence.schemas import ClaimStatus
 from debate_harnesses.presets import get_preset
-from debate_harnesses.providers import MockModelProvider
+from debate_harnesses.providers import MockModelProvider, ModelProvider
 from debate_tools.gateway import ToolGateway
 from debate_tools.schemas import ToolPolicy, ToolRequest
 from debate_tools.web_search import MockWebSearch
@@ -27,15 +27,21 @@ class Orchestrator:
     Usage:
         orchestrator = Orchestrator(event_store, emitter)
         await orchestrator.run_debate(input)
+
+        # With real provider:
+        orchestrator = Orchestrator(event_store, emitter, provider=DeepSeekProvider())
+        await orchestrator.run_debate(input)
     """
 
     def __init__(
         self,
         event_store: PostgresEventStore,
         emitter: EventEmitter,
+        provider: ModelProvider | None = None,
     ) -> None:
         self._event_store = event_store
         self._emitter = emitter
+        self._provider = provider or MockModelProvider()
 
     async def run_debate(self, debate_input: DebateInput) -> dict[str, Any]:
         """Execute a full mock debate run and return the final report.
@@ -52,7 +58,7 @@ class Orchestrator:
             if not harnesses:
                 return {"error": "No harnesses available"}
 
-        provider = MockModelProvider()
+        provider = self._provider
         extractor = EvidenceExtractor()
         tracker = ClaimTracker()
 
