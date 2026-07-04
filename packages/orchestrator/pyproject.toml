@@ -7,10 +7,16 @@ license = { text = "MIT" }
 dependencies = [
     "pydantic>=2.10.0",
     "debate-evidence",
+    "debate-tracing",
+    "debate-harnesses",
+    "debate-tools",
 ]
 
 [tool.uv.sources]
 debate-evidence = { path = "../evidence", editable = true }
+debate-tracing = { path = "../tracing", editable = true }
+debate-harnesses = { path = "../harnesses", editable = true }
+debate-tools = { path = "../tools", editable = true }
 
 [project.optional-dependencies]
 dev = [
