@@ -1,0 +1,152 @@
+{
+  "executive_synthesis": "mock_executive_synthesis",
+  "topic": "Should we use an event bus or Slack for operational signals?",
+  "goal": "Produce an architectural recommendation for the platform team.",
+  "preset": "technical_decision",
+  "agents": [
+    {
+      "id": "advocate",
+      "name": "Solution Advocate",
+      "role": "You argue in favor of the proposed solution. Present its strengths, use cases, and evidence supporting adoption. Acknowledge trade-offs but argue that benefits outweigh costs."
+    },
+    {
+      "id": "skeptic",
+      "name": "Distributed Systems Skeptic",
+      "role": "You challenge architectural claims through reliability, coupling, ownership, and failure-mode lenses. Identify hidden assumptions, single points of failure, and operational risks."
+    },
+    {
+      "id": "architect",
+      "name": "Platform Architect",
+      "role": "You evaluate technical decisions through the lens of maintainability, operating model, integration boundaries, and evolution paths. Propose concrete alternatives when current approaches are suboptimal."
+    },
+    {
+      "id": "synthesizer",
+      "name": "Synthesis Judge",
+      "role": "You produce the final recommendation. Weigh all claims, evidence, challenges, and revisions. Identify agreements, disagreements, unresolved risks, and produce a decision memo."
+    }
+  ],
+  "strongest_claims": [
+    {
+      "id": "C-05",
+      "text": "Mock claim 2 from Distributed Systems Skeptic about Should we use an event bus or ",
+      "agent_id": "skeptic"
+    },
+    {
+      "id": "C-06",
+      "text": "Mock claim 3 from Distributed Systems Skeptic about Should we use an event bus or ",
+      "agent_id": "skeptic"
+    },
+    {
+      "id": "C-07",
+      "text": "Mock claim 1 from Platform Architect about Should we use an event bus or ",
+      "agent_id": "architect"
+    },
+    {
+      "id": "C-08",
+      "text": "Mock claim 2 from Platform Architect about Should we use an event bus or ",
+      "agent_id": "architect"
+    },
+    {
+      "id": "C-09",
+      "text": "Mock claim 3 from Platform Architect about Should we use an event bus or ",
+      "agent_id": "architect"
+    },
+    {
+      "id": "C-10",
+      "text": "Mock claim 1 from Synthesis Judge about Should we use an event bus or ",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-11",
+      "text": "Mock claim 2 from Synthesis Judge about Should we use an event bus or ",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-12",
+      "text": "Mock claim 3 from Synthesis Judge about Should we use an event bus or ",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-13",
+      "text": "Mock claim 1 from Solution Advocate about Should we use an event bus or ",
+      "agent_id": "advocate"
+    },
+    {
+      "id": "C-14",
+      "text": "Mock claim 2 from Solution Advocate about Should we use an event bus or ",
+      "agent_id": "advocate"
+    },
+    {
+      "id": "C-15",
+      "text": "Mock claim 3 from Solution Advocate about Should we use an event bus or ",
+      "agent_id": "advocate"
+    },
+    {
+      "id": "C-16",
+      "text": "Mock claim 1 from Distributed Systems Skeptic about Should we use an event bus or ",
+      "agent_id": "skeptic"
+    },
+    {
+      "id": "C-17",
+      "text": "Mock claim 2 from Distributed Systems Skeptic about Should we use an event bus or ",
+      "agent_id": "skeptic"
+    },
+    {
+      "id": "C-18",
+      "text": "Mock claim 3 from Distributed Systems Skeptic about Should we use an event bus or ",
+      "agent_id": "skeptic"
+    },
+    {
+      "id": "C-19",
+      "text": "Mock claim 1 from Platform Architect about Should we use an event bus or ",
+      "agent_id": "architect"
+    },
+    {
+      "id": "C-20",
+      "text": "Mock claim 2 from Platform Architect about Should we use an event bus or ",
+      "agent_id": "architect"
+    },
+    {
+      "id": "C-21",
+      "text": "Mock claim 3 from Platform Architect about Should we use an event bus or ",
+      "agent_id": "architect"
+    },
+    {
+      "id": "C-22",
+      "text": "Mock claim 1 from Synthesis Judge about Should we use an event bus or ",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-23",
+      "text": "Mock claim 2 from Synthesis Judge about Should we use an event bus or ",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-24",
+      "text": "Mock claim 3 from Synthesis Judge about Should we use an event bus or ",
+      "agent_id": "synthesizer"
+    }
+  ],
+  "challenged_claims": [],
+  "agreements": [],
+  "disagreements": [],
+  "what_changed": [],
+  "final_recommendation": "mock_final_recommendation",
+  "trade_offs": [],
+  "risks": [],
+  "open_questions": [],
+  "implementation_path": "mock_implementation_path",
+  "claim_stats": {
+    "total": 24,
+    "by_status": {
+      "weakened": 4,
+      "proposed": 20
+    },
+    "by_agent": {
+      "advocate": 6,
+      "skeptic": 6,
+      "architect": 6,
+      "synthesizer": 6
+    }
+  }
+}

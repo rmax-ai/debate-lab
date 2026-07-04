@@ -1,0 +1,121 @@
+{
+  "executive_synthesis": "mock_executive_synthesis",
+  "topic": "Are microservices always better than monoliths for early-stage startups?",
+  "goal": "Evaluate the evidence for and against microservices at early stage.",
+  "preset": "research_article",
+  "agents": [
+    {
+      "id": "proposer",
+      "name": "Research Proposer",
+      "role": "You present the research thesis and supporting evidence. Make clear, falsifiable claims backed by citations or data."
+    },
+    {
+      "id": "reviewer",
+      "name": "Peer Reviewer",
+      "role": "You critically evaluate the research claims. Identify methodological weaknesses, unexamined alternatives, overclaimed conclusions, and gaps in the evidence chain."
+    },
+    {
+      "id": "synthesizer",
+      "name": "Research Synthesizer",
+      "role": "You produce a balanced synthesis of the debate. Identify what is well-supported, what remains contested, and what further research is needed."
+    }
+  ],
+  "strongest_claims": [
+    {
+      "id": "C-03",
+      "text": "Mock claim 3 from Research Proposer about Are microservices always bette",
+      "agent_id": "proposer"
+    },
+    {
+      "id": "C-05",
+      "text": "Mock claim 2 from Peer Reviewer about Are microservices always bette",
+      "agent_id": "reviewer"
+    },
+    {
+      "id": "C-06",
+      "text": "Mock claim 3 from Peer Reviewer about Are microservices always bette",
+      "agent_id": "reviewer"
+    },
+    {
+      "id": "C-07",
+      "text": "Mock claim 1 from Research Synthesizer about Are microservices always bette",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-08",
+      "text": "Mock claim 2 from Research Synthesizer about Are microservices always bette",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-09",
+      "text": "Mock claim 3 from Research Synthesizer about Are microservices always bette",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-10",
+      "text": "Mock claim 1 from Research Proposer about Are microservices always bette",
+      "agent_id": "proposer"
+    },
+    {
+      "id": "C-11",
+      "text": "Mock claim 2 from Research Proposer about Are microservices always bette",
+      "agent_id": "proposer"
+    },
+    {
+      "id": "C-12",
+      "text": "Mock claim 3 from Research Proposer about Are microservices always bette",
+      "agent_id": "proposer"
+    },
+    {
+      "id": "C-13",
+      "text": "Mock claim 1 from Peer Reviewer about Are microservices always bette",
+      "agent_id": "reviewer"
+    },
+    {
+      "id": "C-14",
+      "text": "Mock claim 2 from Peer Reviewer about Are microservices always bette",
+      "agent_id": "reviewer"
+    },
+    {
+      "id": "C-15",
+      "text": "Mock claim 3 from Peer Reviewer about Are microservices always bette",
+      "agent_id": "reviewer"
+    },
+    {
+      "id": "C-16",
+      "text": "Mock claim 1 from Research Synthesizer about Are microservices always bette",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-17",
+      "text": "Mock claim 2 from Research Synthesizer about Are microservices always bette",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-18",
+      "text": "Mock claim 3 from Research Synthesizer about Are microservices always bette",
+      "agent_id": "synthesizer"
+    }
+  ],
+  "challenged_claims": [],
+  "agreements": [],
+  "disagreements": [],
+  "what_changed": [],
+  "final_recommendation": "mock_final_recommendation",
+  "trade_offs": [],
+  "risks": [],
+  "open_questions": [],
+  "implementation_path": "mock_implementation_path",
+  "claim_stats": {
+    "total": 18,
+    "by_status": {
+      "weakened": 3,
+      "proposed": 15
+    },
+    "by_agent": {
+      "proposer": 6,
+      "reviewer": 6,
+      "synthesizer": 6
+    }
+  }
+}

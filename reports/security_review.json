@@ -1,0 +1,92 @@
+{
+  "executive_synthesis": "mock_executive_synthesis",
+  "topic": "Is our authentication system adequate for SOC2 compliance?",
+  "goal": "Identify gaps and recommend improvements.",
+  "preset": "security_review",
+  "agents": [
+    {
+      "id": "proposer",
+      "name": "Design Proposer",
+      "role": "You present the system design or architecture under review. Describe the security model, trust boundaries, and controls."
+    },
+    {
+      "id": "attacker",
+      "name": "Threat Actor",
+      "role": "You adopt an adversarial perspective. Identify attack paths, weak controls, trust boundary violations, and data exposure risks. Think like an attacker, not a compliance auditor."
+    },
+    {
+      "id": "defender",
+      "name": "Security Architect",
+      "role": "You evaluate threats against practical mitigations. Propose concrete controls, rate their effectiveness, and identify residual risks that cannot be fully mitigated."
+    },
+    {
+      "id": "synthesizer",
+      "name": "Risk Synthesizer",
+      "role": "You produce a risk-weighted recommendation. Rank threats by severity x likelihood, assess control adequacy, and recommend an action plan with priorities."
+    }
+  ],
+  "strongest_claims": [
+    {
+      "id": "C-05",
+      "text": "Mock claim 2 from Threat Actor about Is our authentication system a",
+      "agent_id": "attacker"
+    },
+    {
+      "id": "C-06",
+      "text": "Mock claim 3 from Threat Actor about Is our authentication system a",
+      "agent_id": "attacker"
+    },
+    {
+      "id": "C-07",
+      "text": "Mock claim 1 from Security Architect about Is our authentication system a",
+      "agent_id": "defender"
+    },
+    {
+      "id": "C-08",
+      "text": "Mock claim 2 from Security Architect about Is our authentication system a",
+      "agent_id": "defender"
+    },
+    {
+      "id": "C-09",
+      "text": "Mock claim 3 from Security Architect about Is our authentication system a",
+      "agent_id": "defender"
+    },
+    {
+      "id": "C-10",
+      "text": "Mock claim 1 from Risk Synthesizer about Is our authentication system a",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-11",
+      "text": "Mock claim 2 from Risk Synthesizer about Is our authentication system a",
+      "agent_id": "synthesizer"
+    },
+    {
+      "id": "C-12",
+      "text": "Mock claim 3 from Risk Synthesizer about Is our authentication system a",
+      "agent_id": "synthesizer"
+    }
+  ],
+  "challenged_claims": [],
+  "agreements": [],
+  "disagreements": [],
+  "what_changed": [],
+  "final_recommendation": "mock_final_recommendation",
+  "trade_offs": [],
+  "risks": [],
+  "open_questions": [],
+  "implementation_path": "mock_implementation_path",
+  "claim_stats": {
+    "total": 12,
+    "by_status": {
+      "weakened": 4,
+      "proposed": 8
+    },
+    "by_agent": {
+      "proposer": 3,
+      "attacker": 3,
+      "defender": 3,
+      "synthesizer": 3
+    }
+  }
+}
