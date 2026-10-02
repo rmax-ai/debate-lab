@@ -9,7 +9,7 @@
 default = "openai"
 
 [provider.openai]
-model = "gpt-4o-mini"             # ~$0.15/M input, ~$0.60/M output — cheapest quality
+model = "gpt-5-nano"              # ~$0.05/M input, ~$0.40/M output — cheapest GPT-5
 temperature = 0.0
 
 [provider.deepseek]

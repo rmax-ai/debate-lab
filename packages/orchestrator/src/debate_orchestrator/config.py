@@ -112,7 +112,7 @@ def _build_provider(name: str, cfg: dict) -> ModelProvider:
             logger.warning("OPENAI_API_KEY not set — falling back to mock")
             return MockModelProvider()
         provider = OpenAIProvider(
-            model=oa_cfg.get("model", "gpt-4o-mini"),
+            model=oa_cfg.get("model", "gpt-5-nano"),
             temperature=oa_cfg.get("temperature", 0.0),
             api_key=api_key,
         )
